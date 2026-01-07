@@ -3,117 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primegrade Solutions | Academic & Career Excellence</title>
+    <title>PrimeGrade Solutions | Excellence, Integrity, Precision</title>
     <style>
         :root {
-            --primary: #0f172a; /* Navy Blue */
+            --primary: #0f172a; /* Deep Navy */
+            --secondary: #1e293b; /* Dark Slate */
             --accent: #22c55e;  /* WhatsApp Green */
-            --light: #f8fafc;
-            --gold: #fbbf24;
+            --gold: #fbbf24;    /* Academic Gold */
+            --light: #f1f5f9;
         }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: var(--light); color: #333; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: var(--light); color: #333; line-height: 1.6; }
         
-        /* Header */
-        .header { background: var(--primary); color: white; padding: 20px; text-align: center; }
-        .brand { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
-        .tagline { color: var(--gold); font-size: 14px; margin-top: 5px; }
+        /* HEADER & HERO */
+        .header { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center; 
+            border-bottom: 4px solid var(--gold);
+        }
+        
+        /* LOGO STYLING */
+        .logo-container { margin-bottom: 10px; }
+        .logo-img { 
+            width: 80px; 
+            height: 80px; 
+            background-color: white; 
+            border-radius: 50%; 
+            padding: 5px;
+            object-fit: contain;
+            border: 3px solid var(--gold);
+        }
 
-        /* Hero Section */
-        .container { max-width: 600px; margin: 40px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-        h2 { text-align: center; color: var(--primary); }
-        
-        /* Form Styling */
+        .brand { font-size: 28px; font-weight: 800; letter-spacing: 1px; margin: 10px 0 5px 0; }
+        .tagline { color: var(--gold); font-size: 15px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* MAIN CONTAINER */
+        .container { 
+            max-width: 700px; 
+            margin: -30px auto 40px auto; /* Overlap effect */
+            padding: 20px; 
+        }
+
+        /* CARDS (Glass Effect) */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+
+        h2 { color: var(--primary); border-left: 5px solid var(--gold); padding-left: 15px; margin-top: 0; }
+        h3 { color: var(--secondary); margin-bottom: 10px; }
+
+        /* ABOUT SECTION */
+        .about-text { font-size: 16px; color: #475569; margin-bottom: 15px; }
+        .founder-badge {
+            background-color: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        /* FORM STYLING */
         .form-group { margin-bottom: 20px; }
-        label { display: block; font-weight: 600; margin-bottom: 8px; }
-        select, input { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
-        select:focus { border-color: var(--primary); outline: none; }
+        label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--secondary); }
+        select, input, textarea { 
+            width: 100%; 
+            padding: 14px; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 10px; 
+            font-size: 16px; 
+            background: #f8fafc;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        select:focus, input:focus, textarea:focus { 
+            border-color: var(--primary); 
+            background: white; 
+            outline: none; 
+        }
 
-        /* Urgency Colors */
-        #urgency { font-weight: bold; }
+        /* URGENCY & BUTTON */
+        #urgency { font-weight: bold; color: #b91c1c; }
         
-        /* The WhatsApp Button */
         .wa-btn {
-            background-color: var(--accent);
+            background: linear-gradient(to right, #16a34a, #22c55e);
             color: white;
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
+            box-shadow: 0 4px 6px rgba(34, 197, 94, 0.3);
+            transition: transform 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
-            text-decoration: none;
         }
-        .wa-btn:hover { background-color: #16a34a; }
-        .wa-icon { margin-right: 10px; font-size: 22px; }
+        .wa-btn:active { transform: scale(0.98); }
+        .wa-icon { margin-right: 12px; font-size: 24px; }
 
-        /* Trust Badges */
-        .trust { text-align: center; margin-top: 30px; font-size: 12px; color: #64748b; }
-        .trust span { margin: 0 5px; color: var(--primary); font-weight: bold; }
+        /* FOOTER */
+        .footer { text-align: center; font-size: 13px; color: #94a3b8; padding-bottom: 30px; }
 
     </style>
 </head>
 <body>
 
     <div class="header">
+        <div class="logo-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135810.png" alt="PrimeGrade Logo" class="logo-img">
+        </div>
         <div class="brand">PRIMEGRADE SOLUTIONS</div>
-        <div class="tagline">Excellence. Integrity. Precision.</div>
+        <div class="tagline">Excellence • Integrity • Precision</div>
     </div>
 
     <div class="container">
-        <h2>Start Your Order</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 30px;">Select your service below to get an instant quote via WhatsApp.</p>
-
-        <div class="form-group">
-            <label>What do you need help with?</label>
-            <select id="service">
-                <option value="Academic Assignment">📝 Academic Assignment (Essay/Report)</option>
-                <option value="Research Proposal/Thesis">🎓 Research Proposal or Thesis</option>
-                <option value="CV or Resume Design">💼 CV / Resume Design</option>
-                <option value="Chegg/Bartleby Unlock">🔓 Chegg/Bartleby Question Unlock</option>
-                <option value="Engineering Calculation">⚙️ Engineering/Math Calculation</option>
-                <option value="Proofreading">👀 Proofreading & Editing</option>
-            </select>
+        
+        <div class="card">
+            <h2>About Us</h2>
+            <div class="about-text">
+                <p><strong>PrimeGrade Solutions</strong> is Zambia's premier academic consultancy, bridging the gap between complex engineering concepts and academic success. We don't just provide answers; we provide understanding.</p>
+                <p>With a proven track record of helping hundreds of students achieve distinction, our team specializes in STEM subjects, technical writing, and professional career branding.</p>
+            </div>
+            
+            <div class="founder-badge">
+                <h3>👨‍💻 Meet the Co-Founder</h3>
+                <p>"As an Electromechanical Engineering specialist, I founded PrimeGrade to bring precision and reliability to academic support. We treat every assignment with the same rigor as an engineering project."</p>
+                <p>— <strong>Raphael Muselema</strong></p>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>How urgent is this?</label>
-            <select id="urgency">
-                <option value="Standard (3-5 Days)">Standard (3-5 Days)</option>
-                <option value="Priority (24-48 Hours)">🔥 Priority (24-48 Hours)</option>
-                <option value="CRITICAL (ASAP - Today)">🚨 CRITICAL (ASAP - Today)</option>
-            </select>
+        <div class="card">
+            <h2>Start Your Order</h2>
+            <p style="text-align: center; color: #64748b; margin-bottom: 25px;">Select your service below for an instant WhatsApp quote.</p>
+
+            <div class="form-group">
+                <label>What do you need?</label>
+                <select id="service">
+                    <option value="Engineering Calculation">⚙️ Engineering / Math Calculation</option>
+                    <option value="Academic Assignment">📝 Academic Assignment (Essay/Report)</option>
+                    <option value="Research/Thesis Support">🎓 Research Proposal or Thesis</option>
+                    <option value="CV/Resume Design">💼 Professional CV / Resume Design</option>
+                    <option value="Chegg/Bartleby Unlock">🔓 Homework Q&A (Chegg/Bartleby)</option>
+                    <option value="AutoCAD Design">🏗️ AutoCAD Design & Drafting</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Urgency Level</label>
+                <select id="urgency">
+                    <option value="Standard (3-5 Days)">Standard (3-5 Days)</option>
+                    <option value="Priority (24-48 Hours)">🔥 Priority (24-48 Hours)</option>
+                    <option value="CRITICAL (ASAP - Today)">🚨 CRITICAL (ASAP - Today)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Topic / Module (Optional)</label>
+                <input type="text" id="topic" placeholder="e.g. Circuit Analysis, Marketing...">
+            </div>
+
+            <button class="wa-btn" onclick="sendToWhatsApp()">
+                <span class="wa-icon">➤</span> Send Inquiry via WhatsApp
+            </button>
         </div>
 
-        <div class="form-group">
-            <label>Any specific module or topic? (Optional)</label>
-            <input type="text" id="topic" placeholder="e.g. Thermodynamics, Marketing, etc.">
+        <div class="footer">
+            <p>© 2026 PrimeGrade Solutions. All Rights Reserved.</p>
+            <p>Verified Experts • 100% Confidential</p>
         </div>
 
-        <button class="wa-btn" onclick="sendToWhatsApp()">
-            <span class="wa-icon">➤</span> Send Inquiry via WhatsApp
-        </button>
-
-        <div class="trust">
-            <p>100% Confidential • Verified Experts • Free Turnitin Report</p>
-        </div>
     </div>
 
     <script>
         function sendToWhatsApp() {
-            // 1. Get Values from the Form
             var service = document.getElementById("service").value;
             var urgency = document.getElementById("urgency").value;
             var topic = document.getElementById("topic").value;
             
-            // 2. Your WhatsApp Number (Zambia)
-            var phone = "260970201887"; 
+            // UPDATED NUMBER
+            var phone = "260951036866"; 
 
-            // 3. Construct the Message
             var text = "*New Inquiry for PrimeGrade Solutions* %0a%0a";
             text += "📌 *Service:* " + service + "%0a";
             text += "⏰ *Urgency:* " + urgency + "%0a";
@@ -122,7 +199,6 @@
             }
             text += "%0a_Hello, I would like a quote for this work._";
 
-            // 4. Open WhatsApp
             var url = "https://wa.me/" + phone + "?text=" + text;
             window.open(url, '_blank');
         }
@@ -130,3 +206,4 @@
 
 </body>
 </html>
+
