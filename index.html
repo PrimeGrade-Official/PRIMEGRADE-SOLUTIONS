@@ -117,6 +117,12 @@
         details[open] summary::after { content: "-"; }
         .faq-answer { margin-top: 10px; font-size: 14px; color: #64748b; line-height: 1.5; }
 
+        /* TESTIMONIALS */
+        .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 600px) { .testimonial-grid { grid-template-columns: 1fr; } }
+        .review-box { background: #f1f5f9; padding: 15px; border-radius: 12px; border-left: 4px solid var(--gold); font-size: 14px; }
+        .stars { color: var(--gold); margin-bottom: 5px; font-size: 16px; }
+
         .payment-section { margin-top: 15px; }
         .payment-label { font-size: 12px; font-weight: bold; color: #94a3b8; margin-bottom: 5px; text-align: center; display: block; }
         .payment-row { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
@@ -141,7 +147,7 @@
         <img src="https://cdn-icons-png.flaticon.com/512/3135/3135810.png" alt="Logo" class="logo-img">
         <div class="brand">PRIMEGRADE SOLUTIONS</div>
         <div class="sub-headline">Zambia's Leading Engineering & Academic Consultancy</div>
-        <a href="#order-form" class="header-btn">Get a Quote Now ➤</a>
+        <a href="#order-form" class="header-btn">Start Your Order Now ➤</a>
     </div>
 
     <div class="container">
@@ -178,20 +184,11 @@
             <div class="trust-item"><span>✅</span>Original</div>
         </div>
 
+        <!-- ABOUT US (OPTION 1) -->
         <div class="card">
-            <h3>📂 Recent Projects</h3>
-            <div class="portfolio-scroll">
-                <div class="portfolio-item"><span class="file-icon">⚡</span><div class="file-name">Circuit Analysis<br>(Distinction)</div></div>
-                <div class="portfolio-item"><span class="file-icon">🏗️</span><div class="file-name">Fluid Mechanics<br>Calculation</div></div>
-                <div class="portfolio-item"><span class="file-icon">📝</span><div class="file-name">Research Proposal<br>(Approved)</div></div>
-                <div class="portfolio-item"><span class="file-icon">💼</span><div class="file-name">CV Design<br>(Mopani Mine)</div></div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>About Us</h2>
-            <p><strong>PrimeGrade Solutions</strong> is a dedicated team of Zambian Engineers and Academic Researchers. With over 5 years of experience assisting students from <strong>UNZA, CBU, Mulungushi</strong>, and international institutions, we provide more than just answers.</p>
-            <p>We deliver detailed breakdowns, correct methodologies, and software-backed results to ensure you understand the material. Your academic success is our priority.</p>
+            <h2>Excellence in Every Field</h2>
+            <p>We are a full-service consultancy. While we are best known for our <strong>Instant Homework Q&A</strong> and <strong>Executive CVs</strong>, our team is equally skilled in handling complex <strong>Final Year Projects, Dissertations, and Data Analysis</strong>.</p>
+            <p style="margin-bottom:0;">Whatever service you choose from the list, we have a specialized expert ready to deliver distinction-level results.</p>
         </div>
 
         <div class="card" id="order-form">
@@ -202,7 +199,7 @@
                 
                 <div class="service-adder-row">
                     <select id="service-dropdown">
-                        <option value="Homework Q&A">🔓 Homework Q&A (Chegg/Bartleby)</option>
+                        <option value="Homework Q&A">🔓 Homework Q&A (Chegg/CourseHero)</option>
                         <option value="Professional CV / Resume">💼 Professional CV / Resume</option>
                         <option value="Assignments (All Courses)">📝 Assignments (All Courses)</option>
                         <option value="Final Year Project / Report">🏗️ Final Year Project / Report</option>
@@ -222,8 +219,8 @@
                     <div class="link-adder-row">
                         <select id="platform-select">
                             <option value="Chegg">Chegg</option>
-                            <option value="Bartleby">Bartleby</option>
                             <option value="CourseHero">CourseHero</option>
+                            <option value="Bartleby">Bartleby</option>
                         </select>
                         <input type="text" id="link-input-field" placeholder="Paste link here...">
                     </div>
@@ -262,6 +259,16 @@
         </div>
 
         <div class="card">
+            <h2>Success Stories</h2>
+            <div class="testimonial-grid">
+                <div class="review-box"><div class="stars">★★★★★</div><p>"Saved my semester. The MATLAB code for my Control Systems project was perfect."</p><div style="font-weight:bold; font-size:12px;">— UNZA Engineering Student</div></div>
+                <div class="review-box"><div class="stars">★★★★★</div><p>"The distinction in Fluid Mechanics came from your breakdown. Highly recommended."</p><div style="font-weight:bold; font-size:12px;">— CBU Student</div></div>
+                <div class="review-box"><div class="stars">★★★★★</div><p>"Your professional CV rewrite helped me get the job abroad. Fast turnaround."</p><div style="font-weight:bold; font-size:12px;">— International Client</div></div>
+                <div class="review-box"><div class="stars">★★★★★</div><p>"My research proposal was approved on the first attempt. Thank you!"</p><div style="font-weight:bold; font-size:12px;">— Mulungushi Student</div></div>
+            </div>
+        </div>
+
+        <div class="card">
             <h2>FAQ</h2>
             <details>
                 <summary>Is my information confidential?</summary>
@@ -276,14 +283,10 @@
                 <div class="faq-answer">For large projects (like Dissertations), we accept a 50% deposit. Smaller assignments require full payment upfront.</div>
             </details>
             <details>
-                <summary>Do you provide calculation files?</summary>
-                <div class="faq-answer">Yes! We provide the source files for AutoCAD, MATLAB, SPSS, and Excel calculations so you can see how it was done.</div>
-            </details>
-            <details>
                 <summary>How do I receive the work?</summary>
                 <div class="faq-answer">
                     <strong>Local:</strong> Direct to your WhatsApp inbox.<br>
-                    <strong>International:</strong> Sent to your preferred Email.
+                    <strong>International:</strong> Sent via WhatsApp or your preferred Email (PDF/Word).
                 </div>
             </details>
         </div>
@@ -411,7 +414,7 @@
             var hasFiles = document.getElementById("has-files").checked;
             var phone = "260750621616"; 
 
-            // HERE IS THE EXACT MESSAGE START YOU REQUESTED:
+            // EXACT MESSAGE START AS REQUESTED
             var msg = "Hello, I would like a quote for this work.\n\n";
             
             msg += "📌 *Services Required:* \n";
