@@ -6,6 +6,7 @@
     
     <meta property="og:title" content="PrimeGrade Solutions">
     <meta property="og:description" content="Zambia's Leading Engineering & Academic Consultancy. Get a quote now.">
+    <!-- You can also upload a logo.png and change this line to content="logo.png" -->
     <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/3135/3135810.png">
     <meta property="og:url" content="https://PrimeGrade-Official.github.io/PRIMEGRADE-SOLUTIONS/">
     
@@ -123,11 +124,13 @@
         .review-box { background: #f1f5f9; padding: 15px; border-radius: 12px; border-left: 4px solid var(--gold); font-size: 14px; }
         .stars { color: var(--gold); margin-bottom: 5px; font-size: 16px; }
 
+        /* PAYMENT LOGOS SECTION */
         .payment-section { margin-top: 15px; }
         .payment-label { font-size: 12px; font-weight: bold; color: #94a3b8; margin-bottom: 5px; text-align: center; display: block; }
-        .payment-row { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-        .pay-icon { height: 35px; width: auto; border-radius: 4px; border: 1px solid #e2e8f0; padding: 2px; background: white; }
-        .zamtel-badge { height: 35px; padding: 0 10px; background: #009639; color: white; font-weight: bold; font-size: 11px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+        .payment-row { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; align-items: center; }
+        
+        /* Updated Logo Styles to ensure they look good */
+        .pay-icon { height: 40px; width: auto; border-radius: 6px; border: 1px solid #e2e8f0; padding: 4px; background: white; object-fit: contain; }
         
         .footer { text-align: center; color: #64748b; padding-bottom: 80px; font-size: 13px; margin-top: 40px; }
         .footer-links { margin-bottom: 15px; font-weight: bold; color: var(--primary); }
@@ -297,150 +300,4 @@
             
             <div class="payment-section">
                 <span class="payment-label">LOCAL (ZAMBIA)</span>
-                <p style="font-size:13px; margin: 0 0 10px 0;">We accept <strong>MTN Mobile Money</strong>, <strong>Airtel Money</strong>, and <strong>Zamtel Kwacha</strong>.</p>
-                <div class="payment-row">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/MTN_Logo.svg/200px-MTN_Logo.svg.png" alt="MTN" class="pay-icon">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Airtel_Logo.svg/200px-Airtel_Logo.svg.png" alt="Airtel" class="pay-icon">
-                    <div class="zamtel-badge">ZAMTEL</div>
-                </div>
-            </div>
-
-            <div class="payment-section">
-                <span class="payment-label">INTERNATIONAL</span>
-                <div class="payment-row">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="pay-icon">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Payoneer_logo.svg" alt="Payoneer" class="pay-icon">
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-links"><a href="#">Home</a> | <a href="#service">Services</a> | <a href="https://wa.me/260750621616">Contact</a></div>
-            <div>© 2026 PrimeGrade Solutions. All Rights Reserved.</div>
-        </div>
-    </div>
-
-    <script>
-        var myServices = [];
-        var myLinks = [];
-
-        function showToast(text) {
-            var x = document.getElementById("toast");
-            x.textContent = text;
-            x.className = "show";
-            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-        }
-
-        function setTopic(name) { document.getElementById("topic").value = name; }
-
-        function addNewServiceItem() {
-            var dropdown = document.getElementById("service-dropdown");
-            var svcName = dropdown.value;
-            var isDuplicate = false;
-            for(var i=0; i < myServices.length; i++) {
-                if(myServices[i] === svcName) isDuplicate = true;
-            }
-            if(isDuplicate) { showToast("⚠️ Service already added!"); return; }
-            myServices.push(svcName);
-            updateServiceDisplay();
-            checkHwVisibility();
-            showToast("✅ Service Added!");
-        }
-
-        function removeServiceItem(index) {
-            myServices.splice(index, 1);
-            updateServiceDisplay();
-            checkHwVisibility();
-        }
-
-        function updateServiceDisplay() {
-            var container = document.getElementById("selected-services-display");
-            var htmlBuilder = "";
-            for(var i=0; i < myServices.length; i++) {
-                var num = i + 1;
-                htmlBuilder += '<div class="selected-svc-item">' +
-                               '<div><span class="svc-number">' + num + '</span>' + myServices[i] + '</div>' +
-                               '<span class="delete-x" onclick="removeServiceItem(' + i + ')">×</span>' +
-                               '</div>';
-            }
-            container.innerHTML = htmlBuilder;
-        }
-
-        function checkHwVisibility() {
-            var box = document.getElementById("platform-options");
-            var found = false;
-            for(var i=0; i < myServices.length; i++) {
-                if(myServices[i].indexOf("Homework Q&A") !== -1) found = true;
-            }
-            box.style.display = found ? "block" : "none";
-        }
-
-        function saveLinkItem() {
-            var plat = document.getElementById("platform-select").value;
-            var urlVal = document.getElementById("link-input-field").value;
-            if(urlVal === "") { showToast("⚠️ Paste a link first!"); return; }
-            var item = { p: plat, u: urlVal };
-            myLinks.push(item);
-            updateLinkDisplay();
-            document.getElementById("link-input-field").value = "";
-            showToast("🔗 Link Saved!");
-        }
-
-        function removeLinkItem(index) {
-            myLinks.splice(index, 1);
-            updateLinkDisplay();
-        }
-
-        function updateLinkDisplay() {
-            var container = document.getElementById("saved-links-list");
-            var htmlBuilder = "";
-            for(var i=0; i < myLinks.length; i++) {
-                var num = i + 1;
-                htmlBuilder += '<div class="saved-item">' +
-                               '<div><span style="font-weight:bold; color:#0f172a; margin-right:5px;">#' + num + '</span>' + 
-                               '<span style="font-weight:bold;">[' + myLinks[i].p + ']</span> ' +
-                               '<span style="color:#64748b; font-size:12px;">' + myLinks[i].u.substring(0, 25) + '...</span></div>' +
-                               '<span class="delete-x" onclick="removeLinkItem(' + i + ')">×</span>' +
-                               '</div>';
-            }
-            container.innerHTML = htmlBuilder;
-        }
-
-        function finalizeInquiry() {
-            if(myServices.length === 0) { showToast("⚠️ Add at least one service!"); return; }
-
-            var urgency = document.getElementById("urgency").value;
-            var topic = document.getElementById("topic").value;
-            var hasFiles = document.getElementById("has-files").checked;
-            var phone = "260750621616"; 
-
-            // EXACT MESSAGE START AS REQUESTED
-            var msg = "Hello, I would like a quote for this work.\n\n";
-            
-            msg += "📌 *Services Required:* \n";
-            for(var i=0; i < myServices.length; i++) {
-                var svc = myServices[i];
-                var n = i + 1;
-                msg += n + ". " + svc + "\n";
-                
-                if(svc.indexOf("Homework Q&A") !== -1 && myLinks.length > 0) {
-                    msg += "   _Attached Links:_ \n";
-                    for(var j=0; j < myLinks.length; j++) {
-                        msg += "   🔗 [" + myLinks[j].p + "] " + myLinks[j].u + "\n";
-                    }
-                }
-            }
-
-            msg += "\n⏳ *Urgency:* " + urgency + "\n";
-            msg += "📚 *Topic/Details:* " + (topic ? topic : "N/A") + "\n";
-            
-            if(hasFiles) {
-                msg += "\n📎 *NOTE: I have PDF/Image files to attach. I will send them now!*";
-            }
-
-            var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
-            window.open(url, '_blank');
-        }
-    </script>
-</body>
-</html>
+                <p style="font-size:13px; margin: 0 0 10px 0;">We accept <strong>MTN Mobile Money
