@@ -344,4 +344,22 @@
                 msg += n + ". " + svc + "\n";
                 
                 // IF THIS SERVICE IS HOMEWORK, PUT LINKS RIGHT UNDER IT
-   
+                if(svc.indexOf("Homework Q&A") !== -1 && myLinks.length > 0) {
+                    msg += "   _Attached Links:_ \n";
+                    for(var j=0; j < myLinks.length; j++) {
+                        msg += "   🔗 [" + myLinks[j].p + "] " + myLinks[j].u + "\n";
+                    }
+                }
+            }
+
+            msg += "\n⏳ *Urgency:* " + urgency + "\n";
+            msg += "📚 *Topic/Details:* " + (topic ? topic : "N/A") + "\n\n";
+            msg += "Please give me a quote.";
+
+            // Open WhatsApp
+            var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
