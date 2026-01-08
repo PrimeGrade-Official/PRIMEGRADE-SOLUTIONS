@@ -42,7 +42,7 @@
         h2 { color: var(--primary); border-left: 6px solid var(--gold); padding-left: 15px; margin-top: 0; }
         h3 { color: var(--secondary); margin-top: 0; font-size: 18px; }
 
-        /* TRUST BAR (New) */
+        /* TRUST BAR */
         .trust-bar { display: flex; justify-content: space-around; background: #e0f2fe; padding: 15px; border-radius: 12px; margin-bottom: 25px; font-size: 13px; font-weight: bold; color: var(--primary); text-align: center; border: 1px solid #bae6fd; }
         .trust-item span { display: block; font-size: 20px; margin-bottom: 5px; }
 
@@ -62,8 +62,8 @@
         /* FORM & INPUTS */
         .form-group { margin-bottom: 20px; }
         label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--secondary); }
-        select, input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; background: #f8fafc; box-sizing: border-box; transition: 0.3s; }
-        select:focus, input:focus { border-color: var(--gold); background: white; outline: none; }
+        select, input, textarea { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; background: #f8fafc; box-sizing: border-box; transition: 0.3s; font-family: inherit; }
+        select:focus, input:focus, textarea:focus { border-color: var(--gold); background: white; outline: none; }
 
         /* INTERACTIVE PILLS */
         .tags-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
@@ -76,15 +76,18 @@
             font-size: 18px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;
             box-shadow: 0 8px 20px -5px rgba(34, 197, 94, 0.4); animation: pulse 2s infinite;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
 
-        /* LINK INPUT (Hidden by default) */
+        /* LINK INPUT AREA (Hidden by default) */
         #link-group { display: none; margin-top: 15px; }
-        #link-input { border-color: #3b82f6; background: #eff6ff; }
+        #link-input { border-color: #3b82f6; background: #eff6ff; height: 100px; }
+
+        /* FAQ COLLAPSIBLE */
+        details { border-bottom: 1px solid #e2e8f0; padding: 15px 0; }
+        summary { font-weight: bold; color: var(--primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
+        summary::after { content: "+"; color: var(--gold); font-weight: bold; }
+        details[open] summary::after { content: "-"; }
+        .faq-answer { margin-top: 10px; font-size: 14px; color: #64748b; }
 
         /* PAYMENT ROW */
         .payment-row { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
@@ -131,6 +134,11 @@
         </div>
 
         <div class="card">
+            <h2>About Us</h2>
+            <p style="color: #475569;"><strong>PrimeGrade Solutions</strong> bridges the gap between complex engineering concepts and academic success. We don't just solve problems; we explain the 'Why' behind them. Precision, integrity, and results.</p>
+        </div>
+
+        <div class="card">
             <h2>How It Works</h2>
             <div class="step-container">
                 <div class="step-box"><div class="step-num" style="background: #e0f2fe; color: var(--primary);">1</div><div class="step-title">Send Details</div><div class="step-desc">Fill form below</div></div>
@@ -150,12 +158,14 @@
                     <option value="Academic Assignment">📝 Academic Assignment (Essay/Report)</option>
                     <option value="Research/Thesis Support">🎓 Research Proposal or Thesis</option>
                     <option value="CV/Resume Design">💼 Professional CV / Resume Design</option>
-                    <option value="Homework Q&A">🔓 Homework Q&A (Chegg/CourseHero)</option>
+                    <option value="Homework Q&A">🔓 Homework Q&A (Chegg/Bartleby/CourseHero)</option>
                 </select>
                 
                 <div id="link-group">
-                    <label style="color:#2563eb;">Paste Question Link / URL:</label>
-                    <input type="text" id="link-input" placeholder="https://chegg.com/homework-help/...">
+                    <label style="color:#2563eb;">Paste Question Links Below (One per line):</label>
+                    <textarea id="link-input" placeholder="Example:
+https://chegg.com/homework-help/question-1...
+https://www.bartleby.com/solution/answer..."></textarea>
                 </div>
             </div>
 
@@ -182,6 +192,29 @@
             </div>
 
             <button class="wa-btn" onclick="sendToWhatsApp()">➤ Send Inquiry via WhatsApp</button>
+        </div>
+
+        <div class="card">
+            <h2>FAQ</h2>
+            <details><summary>Is my information confidential?</summary><div class="faq-answer">Yes, 100%. We never share client data.</div></details>
+            <details><summary>How do I make payment?</summary><div class="faq-answer">We accept Mobile Money (MTN, Airtel, Zamtel) and PayPal/Payoneer.</div></details>
+            <details><summary>Can you handle urgent deadlines?</summary><div class="faq-answer">Yes! Select "CRITICAL" for same-day work.</div></details>
+        </div>
+
+        <div class="card">
+            <h2>Trusted by Students</h2>
+            <div class="testimonial-grid">
+                <div class="review-box">
+                    <div class="stars">★★★★★</div>
+                    <p>"The circuit analysis breakdown was clear and helped me pass my exam."</p>
+                    <div style="font-weight:bold; margin-top:5px; font-size:12px;">— CBU Student</div>
+                </div>
+                <div class="review-box">
+                    <div class="stars">★★★★★</div>
+                    <p>"Fastest CV service I've used. Got the internship interview immediately."</p>
+                    <div style="font-weight:bold; margin-top:5px; font-size:12px;">— UNZA Graduate</div>
+                </div>
+            </div>
         </div>
 
         <div class="card" style="text-align: center;">
@@ -223,12 +256,12 @@
             }
         }
 
-        // 3. WhatsApp Logic (Updated)
+        // 3. WhatsApp Logic (Supports Multiple Lines)
         function sendToWhatsApp() {
             var service = document.getElementById("service").value;
             var urgency = document.getElementById("urgency").value;
             var topic = document.getElementById("topic").value;
-            var link = document.getElementById("link-input").value;
+            var links = document.getElementById("link-input").value;
             var phone = "260951036866"; 
 
             var text = "*New Inquiry for PrimeGrade Solutions* %0a%0a";
@@ -237,9 +270,11 @@
             
             if(topic) { text += "📚 *Topic:* " + topic + "%0a"; }
             
-            // Add Link if provided
-            if (service === "Homework Q&A" && link) {
-                text += "🔗 *Link:* " + link + "%0a";
+            // Handle Multiple Links
+            if (service === "Homework Q&A" && links) {
+                // This replaces "Enter" key presses with WhatsApp line breaks
+                var formattedLinks = links.replace(/\n/g, "%0a");
+                text += "🔗 *Links:* %0a" + formattedLinks + "%0a";
             }
 
             text += "%0a_Hello, I would like a quote for this work._";
