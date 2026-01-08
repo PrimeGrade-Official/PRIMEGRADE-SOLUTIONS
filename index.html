@@ -39,8 +39,9 @@
         
         /* MULTI-SELECT */
         .service-adder-row { display: flex; gap: 10px; }
-        .service-adder-row select { width: 75%; }
-        .add-svc-btn { width: 25%; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
+        .service-adder-row select { width: 70%; }
+        .add-svc-btn { width: 30%; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        .add-svc-btn:active { background: var(--gold); transform: scale(0.95); }
 
         /* SELECTED LIST */
         #selected-services-display { margin-top: 10px; display: flex; flex-direction: column; gap: 5px; }
@@ -70,10 +71,6 @@
         .float-wa { position: fixed; bottom: 25px; right: 25px; background: #22c55e; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 25px rgba(34, 197, 94, 0.6); z-index: 1000; border: 2px solid white; }
         .float-wa img { width: 35px; height: 35px; }
 
-        /* TOAST */
-        #toast { visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 50px; padding: 16px; position: fixed; z-index: 1001; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 14px; opacity: 0; transition: opacity 0.5s, bottom 0.5s; }
-        #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
-
         /* FAQ */
         details { border-bottom: 1px solid #e2e8f0; padding: 15px 0; }
         summary { font-weight: bold; color: var(--primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
@@ -99,8 +96,6 @@
     <a href="https://wa.me/260750621616" class="float-wa">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA">
     </a>
-
-    <div id="toast">Message</div>
 
     <div class="header">
         <img src="https://cdn-icons-png.flaticon.com/512/3135/3135810.png" alt="Logo" class="logo-img">
@@ -243,23 +238,18 @@
         var myServices = [];
         var myLinks = [];
 
-        function showToast(text) {
-            var x = document.getElementById("toast");
-            x.textContent = text;
-            x.className = "show";
-            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-        }
+        function setTopic(name) { document.getElementById("topic").value = name; }
 
         function addNewServiceItem() {
             var dropdown = document.getElementById("service-dropdown");
             var svcName = dropdown.value;
             var isDuplicate = false;
             for(var i=0; i < myServices.length; i++) { if(myServices[i] === svcName) isDuplicate = true; }
-            if(isDuplicate) { showToast("⚠️ Service already added!"); return; }
+            if(isDuplicate) { alert("⚠️ You already added this service."); return; }
             myServices.push(svcName);
             updateServiceDisplay();
             checkHwVisibility();
-            showToast("✅ Service Added!");
+            alert("✅ Service Added!");
         }
 
         function removeServiceItem(index) {
@@ -288,12 +278,12 @@
         function saveLinkItem() {
             var plat = document.getElementById("platform-select").value;
             var urlVal = document.getElementById("link-input-field").value;
-            if(urlVal === "") { showToast("⚠️ Paste a link first!"); return; }
+            if(urlVal === "") { alert("⚠️ Please paste a link first!"); return; }
             var item = { p: plat, u: urlVal };
             myLinks.push(item);
             updateLinkDisplay();
             document.getElementById("link-input-field").value = "";
-            showToast("🔗 Link Saved!");
+            alert("🔗 Link Saved!");
         }
 
         function removeLinkItem(index) {
@@ -303,4 +293,9 @@
 
         function updateLinkDisplay() {
             var container = document.getElementById("saved-links-list");
-            var htmlBuilder
+            var htmlBuilder = "";
+            for(var i=0; i < myLinks.length; i++) {
+                var num = i + 1;
+                htmlBuilder += '<div class="saved-item"><div><span style="font-weight:bold; color:#0f172a; margin-right:5px;">#' + num + '</span><span style="font-weight:bold;">[' + myLinks[i].p + ']</span> <span style="color:#64748b; font-size:12px;">' + myLinks[i].u.substring(0, 25) + '...</span></div><span class="delete-x" onclick="removeLinkItem(' + i + ')">×</span></div>';
+            }
+            container.
