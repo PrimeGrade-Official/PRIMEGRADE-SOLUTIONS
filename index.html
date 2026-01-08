@@ -12,7 +12,7 @@
         /* HEADER */
         .header { background: linear-gradient(135deg, var(--primary), #1e293b); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
         .logo-img { width: 90px; height: 90px; background: white; border-radius: 50%; padding: 5px; object-fit: contain; border: 3px solid var(--gold); margin-bottom: 10px; box-shadow: 0 0 20px rgba(251, 191, 36, 0.5); }
-        .brand { font-size: 30px; font-weight: 800; letter-spacing: 1px; margin: 5px 0; }
+        .brand { font-size: 28px; font-weight: 800; letter-spacing: 1px; margin: 5px 0; }
         .sub-headline { color: #cbd5e1; font-size: 15px; margin-top: 5px; margin-bottom: 20px; }
         .header-btn { background-color: var(--gold); color: var(--primary); padding: 12px 25px; border-radius: 30px; font-weight: bold; font-size: 16px; display: inline-block; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4); transition: transform 0.2s; }
         .header-btn:active { transform: scale(0.95); }
@@ -46,7 +46,7 @@
         
         /* DYNAMIC LINK BOXES */
         .link-box { display: none; margin-top: 10px; }
-        .link-box textarea { height: 80px; border-color: #93c5fd; }
+        .link-box textarea { height: 120px; border-color: #93c5fd; font-size: 14px; }
         .link-label { font-size: 13px; color: #2563eb; font-weight: bold; margin-bottom: 5px; }
 
         /* TAGS */
@@ -114,38 +114,42 @@
             <div class="form-group">
                 <label>Service Required</label>
                 <select id="service" onchange="togglePlatforms()">
-                    <option value="Engineering Calculation">⚙️ Engineering / Math Calculation</option>
-                    <option value="Academic Assignment">📝 Academic Assignment (Essay/Report)</option>
-                    <option value="Research/Thesis Support">🎓 Research Proposal or Thesis</option>
-                    <option value="CV/Resume Design">💼 Professional CV / Resume Design</option>
-                    <option value="Homework Q&A">🔓 Homework Q&A (Chegg/Bartleby/CourseHero)</option>
+                    <option value="Assignments (All Courses)">📝 Assignments (All Courses)</option>
+                    <option value="Homework Q&A (Chegg/Bartleby/CourseHero)">🔓 Homework Q&A (Chegg/Bartleby/CourseHero)</option>
+                    <option value="Research Proposal / Synopsis">🎓 Research Proposal / Synopsis</option>
+                    <option value="Thesis & Dissertation Writing">📘 Thesis & Dissertation Writing</option>
+                    <option value="Final Year Project / Report">🏗️ Final Year Project / Report</option>
+                    <option value="Research Paper & Publishing">📄 Research Paper & Publishing</option>
+                    <option value="Data Analysis (SPSS/Excel)">📊 Data Analysis (SPSS/Excel)</option>
+                    <option value="Editing & Referencing (APA/Harvard)">✍️ Editing & Referencing (APA/Harvard)</option>
+                    <option value="Content Writing">💼 Content Writing</option>
                 </select>
 
                 <div id="platform-options">
-                    <label style="color:#0f172a; margin-bottom:10px;">Select Platforms (Multi-select):</label>
+                    <label style="color:#0f172a; margin-bottom:10px;">Select Platforms (Check all that apply):</label>
                     
                     <label class="checkbox-label">
                         <input type="checkbox" id="check-chegg" onchange="toggleLinkInput('chegg')"> Chegg
                     </label>
                     <div id="box-chegg" class="link-box">
-                        <div class="link-label">Paste Chegg Links here (One per line):</div>
-                        <textarea id="links-chegg"></textarea>
+                        <div class="link-label">Paste Multiple Chegg Links (One per line):</div>
+                        <textarea id="links-chegg" placeholder="Link 1&#10;Link 2&#10;Link 3..."></textarea>
                     </div>
 
                     <label class="checkbox-label">
                         <input type="checkbox" id="check-bartleby" onchange="toggleLinkInput('bartleby')"> Bartleby
                     </label>
                     <div id="box-bartleby" class="link-box">
-                        <div class="link-label">Paste Bartleby Links here:</div>
-                        <textarea id="links-bartleby"></textarea>
+                        <div class="link-label">Paste Multiple Bartleby Links:</div>
+                        <textarea id="links-bartleby" placeholder="Link 1&#10;Link 2..."></textarea>
                     </div>
 
                     <label class="checkbox-label">
                         <input type="checkbox" id="check-coursehero" onchange="toggleLinkInput('coursehero')"> CourseHero
                     </label>
                     <div id="box-coursehero" class="link-box">
-                        <div class="link-label">Paste CourseHero Links here:</div>
-                        <textarea id="links-coursehero"></textarea>
+                        <div class="link-label">Paste Multiple CourseHero Links:</div>
+                        <textarea id="links-coursehero" placeholder="Link 1&#10;Link 2..."></textarea>
                     </div>
                 </div>
             </div>
@@ -211,7 +215,12 @@
         function togglePlatforms() {
             var service = document.getElementById("service").value;
             var platformDiv = document.getElementById("platform-options");
-            platformDiv.style.display = (service === "Homework Q&A") ? "block" : "none";
+            // Check if user selected Homework Q&A
+            if (service.includes("Homework Q&A")) {
+                platformDiv.style.display = "block";
+            } else {
+                platformDiv.style.display = "none";
+            }
         }
 
         function toggleLinkInput(platform) {
@@ -225,27 +234,28 @@
             var topic = document.getElementById("topic").value;
             var phone = "260951036866"; 
 
-            // Base Message
-            var text = "*New Inquiry for PrimeGrade Solutions* %0a%0a";
-            text += "📌 *Service:* " + service + "%0a";
-            text += "⏰ *Urgency:* " + urgency + "%0a";
-            if(topic) { text += "📚 *Topic:* " + topic + "%0a"; }
+            // 1. Build the Message String
+            var text = "*New Inquiry for PrimeGrade Solutions*\n\n";
+            text += "📌 *Service:* " + service + "\n";
+            text += "⏰ *Urgency:* " + urgency + "\n";
+            if(topic) { text += "📚 *Topic:* " + topic + "\n"; }
 
-            // Platform Links Logic
-            if (service === "Homework Q&A") {
+            // 2. Add Links if Homework Q&A is selected
+            if (service.includes("Homework Q&A")) {
                 var cLinks = document.getElementById("links-chegg").value;
                 var bLinks = document.getElementById("links-bartleby").value;
                 var hLinks = document.getElementById("links-coursehero").value;
 
-                if(cLinks) { text += "%0a🔵 *Chegg Links:* %0a" + cLinks.replace(/\n/g, "%0a") + "%0a"; }
-                if(bLinks) { text += "%0a🔴 *Bartleby Links:* %0a" + bLinks.replace(/\n/g, "%0a") + "%0a"; }
-                if(hLinks) { text += "%0a🟠 *CourseHero Links:* %0a" + hLinks.replace(/\n/g, "%0a") + "%0a"; }
+                if(cLinks) { text += "\n🔵 *Chegg Links:*\n" + cLinks + "\n"; }
+                if(bLinks) { text += "\n🔴 *Bartleby Links:*\n" + bLinks + "\n"; }
+                if(hLinks) { text += "\n🟠 *CourseHero Links:*\n" + hLinks + "\n"; }
             }
 
-            text += "%0a_Hello, I would like a quote for this work._";
+            text += "\n_Hello, I would like a quote for this work._";
             
-            // Encode properly
-            window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(text).replace(/%250a/g, "%0a"), '_blank');
+            // 3. Encode the WHOLE message safely for WhatsApp
+            var encodedText = encodeURIComponent(text);
+            window.open("https://wa.me/" + phone + "?text=" + encodedText, '_blank');
         }
     </script>
 </body>
