@@ -150,7 +150,7 @@
                         <option value="Thesis & Dissertation Writing">📘 Thesis & Dissertation Writing</option>
                         <option value="Data Analysis (SPSS/Excel)">📊 Data Analysis (SPSS/Excel)</option>
                     </select>
-                    <button class="add-svc-btn" onclick="addService()">➕ Add</button>
+                    <button class="add-svc-btn" type="button" onclick="addService()">➕ Add</button>
                 </div>
 
                 <div id="selected-services-display"></div>
@@ -168,7 +168,7 @@
                         <input type="text" id="link-input-field" placeholder="Paste link here...">
                     </div>
                     
-                    <button class="add-link-btn" onclick="addLinkToList()">➕ Save Link</button>
+                    <button class="add-link-btn" type="button" onclick="addLinkToList()">➕ Save Link</button>
                     <div id="saved-links-list"></div>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                 </div>
             </div>
 
-            <button class="wa-btn" onclick="sendToWhatsApp()">➤ Send Inquiry via WhatsApp</button>
+            <button class="wa-btn" type="button" onclick="sendToWhatsApp()">➤ Send Inquiry via WhatsApp</button>
         </div>
 
         <div class="card">
@@ -236,15 +236,22 @@
         var selectedServices = [];
         var savedLinks = [];
 
-        function setTopic(name) { document.getElementById("topic").value = name; }
+        function setTopic(name) { 
+            document.getElementById("topic").value = name; 
+        }
 
         // --- SERVICE MANAGER ---
         function addService() {
             var dropdown = document.getElementById("service-dropdown");
             var svcName = dropdown.value;
 
-            // Check duplicate
-            if(selectedServices.includes(svcName)) {
+            // Check duplicate using classic loop for safety
+            var exists = false;
+            for(var i=0; i < selectedServices.length; i++) {
+                if(selectedServices[i] === svcName) exists = true;
+            }
+
+            if(exists) {
                 alert("You already added this service.");
                 return;
             }
@@ -263,20 +270,25 @@
         function renderServices() {
             var container = document.getElementById("selected-services-display");
             container.innerHTML = "";
-            selectedServices.forEach(function(svc, index) {
-                var count = index + 1;
+            
+            for(var i=0; i < selectedServices.length; i++) {
+                var count = i + 1;
                 var html = '<div class="selected-svc-item">' +
-                           '<div><span class="svc-number">' + count + '</span>' + svc + '</div>' +
-                           '<span class="delete-x" onclick="removeService(' + index + ')">×</span>' +
+                           '<div><span class="svc-number">' + count + '</span>' + selectedServices[i] + '</div>' +
+                           '<span class="delete-x" onclick="removeService(' + i + ')">×</span>' +
                            '</div>';
                 container.innerHTML += html;
-            });
+            }
         }
 
         function checkHomeworkVisibility() {
             var platformDiv = document.getElementById("platform-options");
-            // Check if "Homework Q&A" is inside the array
-            var hasHomework = selectedServices.some(s => s.includes("Homework Q&A"));
+            var hasHomework = false;
+            for(var i=0; i < selectedServices.length; i++) {
+                if(selectedServices[i].indexOf("Homework Q&A") > -1) {
+                    hasHomework = true;
+                }
+            }
             platformDiv.style.display = hasHomework ? "block" : "none";
         }
         // -----------------------
@@ -286,6 +298,7 @@
             var platform = document.getElementById("platform-select").value;
             var url = document.getElementById("link-input-field").value;
             if (url.trim() === "") { alert("Please paste a link first!"); return; }
+            
             var linkObj = { platform: platform, url: url };
             savedLinks.push(linkObj);
             renderLinks();
@@ -300,16 +313,18 @@
         function renderLinks() {
             var container = document.getElementById("saved-links-list");
             container.innerHTML = "";
-            savedLinks.forEach(function(item, index) {
-                var count = index + 1; 
+            
+            for(var i=0; i < savedLinks.length; i++) {
+                var count = i + 1; 
+                var item = savedLinks[i];
                 var html = '<div class="saved-item">' +
                            '<div><span style="font-weight:bold; color:#0f172a; margin-right:5px;">#' + count + '</span>' + 
                            '<span style="font-weight:bold; color:#000;">[' + item.platform + ']</span> ' +
                            '<span style="color:#64748b; font-size:12px;">' + item.url.substring(0, 30) + '...</span></div>' +
-                           '<span class="delete-x" onclick="removeLink(' + index + ')">×</span>' +
+                           '<span class="delete-x" onclick="removeLink(' + i + ')">×</span>' +
                            '</div>';
                 container.innerHTML += html;
-            });
+            }
         }
         // -----------------------
 
@@ -327,19 +342,9 @@
             
             // 1. LIST SERVICES NUMERICALLY
             text += "📌 *Services Required:* \n";
-            selectedServices.forEach(function(svc, index) {
-                text += (index + 1) + ". " + svc + "\n";
-            });
-
-            text += "\n⏰ *Urgency:* " + urgency + "\n";
-            if(topic) { text += "📚 *Topic:* " + topic + "\n"; }
-
-            // 2. LIST LINKS NUMERICALLY
-            if (savedLinks.length > 0) {
-                text += "\n🔗 *Saved Links:* \n";
-                savedLinks.forEach(function(item, index) {
-                    text += (index + 1) + ". [" + item.platform + "] " + item.url + "\n";
-                });
+            for(var i=0; i < selectedServices.length; i++) {
+                text += (i + 1) + ". " + selectedServices[i] + "\n";
             }
 
-            text += "\n_Hello, I would like a quote f
+            text += "\n⏰ *Urgency:* " + urgency + "\n";
+         
