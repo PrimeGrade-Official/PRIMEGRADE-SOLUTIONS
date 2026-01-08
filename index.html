@@ -1,245 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrimeGrade Solutions | Excellence, Integrity, Precision</title>
-    <style>
-        :root { --primary: #0f172a; --secondary: #334155; --gold: #fbbf24; --light: #f8fafc; --success: #16a34a; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: var(--light); color: #333; line-height: 1.6; }
-        a { text-decoration: none; color: inherit; }
-        
-        /* HEADER */
-        .header { background: linear-gradient(135deg, var(--primary), #1e293b); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
-        .logo-img { width: 90px; height: 90px; background: white; border-radius: 50%; padding: 5px; object-fit: contain; border: 3px solid var(--gold); margin-bottom: 10px; box-shadow: 0 0 20px rgba(251, 191, 36, 0.5); }
-        .brand { font-size: 28px; font-weight: 800; letter-spacing: 1px; margin: 5px 0; }
-        .sub-headline { color: #cbd5e1; font-size: 15px; margin-top: 5px; margin-bottom: 20px; }
-        .header-btn { background-color: var(--gold); color: var(--primary); padding: 12px 25px; border-radius: 30px; font-weight: bold; font-size: 16px; display: inline-block; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4); }
-
-        /* LAYOUT */
-        .container { max-width: 800px; margin: -25px auto 40px auto; padding: 20px; position: relative; z-index: 3; }
-        .card { background: white; border-radius: 16px; padding: 25px; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1); margin-bottom: 25px; border: 1px solid #f1f5f9; }
-        h2 { color: var(--primary); border-left: 6px solid var(--gold); padding-left: 15px; margin-top: 0; }
-        
-        /* TIMELINE */
-        .timeline-box { display: flex; justify-content: space-between; gap: 10px; text-align: center; margin-bottom: 25px; flex-wrap: wrap; }
-        .timeline-step { flex: 1; min-width: 80px; }
-        .step-icon { width: 50px; height: 50px; background: var(--primary); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; font-size: 20px; border: 2px solid var(--gold); }
-        .step-title { font-weight: 800; font-size: 13px; color: var(--primary); display: block; margin-bottom: 4px; }
-        .step-desc { font-size: 11px; color: #64748b; line-height: 1.3; }
-        
-        /* TRUST BAR */
-        .trust-bar { display: flex; justify-content: space-around; background: #e0f2fe; padding: 15px; border-radius: 12px; margin-bottom: 25px; font-size: 13px; font-weight: bold; color: var(--primary); text-align: center; border: 1px solid #bae6fd; }
-        .trust-item span { display: block; font-size: 20px; margin-bottom: 5px; }
-
-        /* FORM */
-        .form-group { margin-bottom: 20px; }
-        label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--secondary); }
-        select, input, textarea { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; background: #f8fafc; box-sizing: border-box; }
-        
-        /* MULTI-SELECT */
-        .service-adder-row { display: flex; gap: 10px; }
-        .service-adder-row select { width: 75%; }
-        .add-svc-btn { width: 25%; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
-
-        /* SELECTED LIST */
-        #selected-services-display { margin-top: 10px; display: flex; flex-direction: column; gap: 5px; }
-        .selected-svc-item { background: #f0f9ff; padding: 10px; border-radius: 8px; border: 1px solid #bae6fd; font-size: 14px; display: flex; justify-content: space-between; align-items: center; color: var(--primary); font-weight: 500; }
-        .svc-number { background: var(--gold); color: #000; padding: 2px 6px; border-radius: 4px; margin-right: 8px; font-size: 11px; font-weight: bold; }
-        .delete-x { color: #94a3b8; font-weight: bold; cursor: pointer; padding: 0 10px; font-size: 18px; }
-
-        /* LINK MANAGER */
-        #platform-options { display: none; margin-top: 15px; padding: 20px; background: #fffbeb; border-radius: 12px; border: 2px solid #fbbf24; }
-        .link-adder-row { display: flex; gap: 10px; margin-bottom: 10px; }
-        .link-adder-row select { width: 35%; } 
-        .link-adder-row input { width: 65%; }
-        .add-link-btn { background: #b45309; color: white; border: none; padding: 10px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        #saved-links-list { margin-top: 15px; display: flex; flex-direction: column; gap: 8px; }
-        .saved-item { background: white; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 13px; display: flex; justify-content: space-between; align-items: center; overflow: hidden; }
-        .saved-item a { color: #0369a1; text-decoration: underline; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px; display: inline-block; vertical-align: bottom;}
-
-        /* FILE CHECKBOX */
-        .checkbox-container { display: flex; align-items: center; gap: 10px; background: #f1f5f9; padding: 15px; border-radius: 12px; margin-bottom: 20px; cursor: pointer; border: 2px solid transparent; }
-        .checkbox-container input { width: 20px; height: 20px; }
-        .checkbox-text { font-size: 14px; font-weight: 600; color: var(--primary); }
-
-        /* WHATSAPP BUTTONS */
-        .wa-btn { background: linear-gradient(to right, #16a34a, #22c55e); color: white; width: 100%; padding: 18px; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px -5px rgba(34, 197, 94, 0.4); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
-
-        /* FLOATING BTN */
-        .float-wa { position: fixed; bottom: 25px; right: 25px; background: #22c55e; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 25px rgba(34, 197, 94, 0.6); z-index: 1000; border: 2px solid white; }
-        .float-wa img { width: 35px; height: 35px; }
-
-        /* TOAST */
-        #toast { visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 50px; padding: 16px; position: fixed; z-index: 1001; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 14px; opacity: 0; transition: opacity 0.5s, bottom 0.5s; }
-        #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
-
-        /* FAQ */
-        details { border-bottom: 1px solid #e2e8f0; padding: 15px 0; }
-        summary { font-weight: bold; color: var(--primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .faq-answer { margin-top: 10px; font-size: 14px; color: #64748b; line-height: 1.5; }
-
-        /* TESTIMONIALS */
-        .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        @media (max-width: 600px) { .testimonial-grid { grid-template-columns: 1fr; } }
-        .review-box { background: #f1f5f9; padding: 15px; border-radius: 12px; border-left: 4px solid var(--gold); font-size: 14px; }
-        .stars { color: var(--gold); margin-bottom: 5px; font-size: 16px; }
-
-        /* PAYMENT */
-        .payment-section { margin-top: 15px; }
-        .payment-label { font-size: 12px; font-weight: bold; color: #94a3b8; margin-bottom: 5px; text-align: center; display: block; }
-        .payment-row { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; align-items: center; }
-        .pay-icon { height: 40px; width: auto; border-radius: 6px; border: 1px solid #e2e8f0; padding: 4px; background: white; object-fit: contain; }
-        
-        .footer { text-align: center; color: #64748b; padding-bottom: 80px; font-size: 13px; margin-top: 40px; }
-    </style>
-</head>
-<body>
-
-    <a href="https://wa.me/260750621616" class="float-wa">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA">
-    </a>
-
-    <div id="toast">Message</div>
-
-    <div class="header">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135810.png" alt="Logo" class="logo-img">
-        <div class="brand">PRIMEGRADE SOLUTIONS</div>
-        <div class="sub-headline">Zambia's Leading Engineering & Academic Consultancy</div>
-        <a href="#order-form" class="header-btn">Start Your Order Now ➤</a>
-    </div>
-
-    <div class="container">
-        
-        <!-- HOW IT WORKS -->
-        <div class="card" style="background: transparent; box-shadow: none; border:none; padding: 0;">
-            <div class="timeline-box">
-                <div class="timeline-step"><div class="step-icon">📝</div><span class="step-title">1. Request</span><div class="step-desc">Fill form & select urgency</div></div>
-                <div class="timeline-step"><div class="step-icon">💬</div><span class="step-title">2. Chat</span><div class="step-desc">Finalize price on WhatsApp</div></div>
-                <div class="timeline-step"><div class="step-icon">💳</div><span class="step-title">3. Pay</span><div class="step-desc">MTN / Airtel / PayPal</div></div>
-                <div class="timeline-step"><div class="step-icon">📩</div><span class="step-title">4. Receive</span><div class="step-desc">WhatsApp or Email</div></div>
-            </div>
-        </div>
-
-        <div class="trust-bar">
-            <div class="trust-item"><span>🔒</span>Confidential</div>
-            <div class="trust-item"><span>⚡</span>On-Time</div>
-            <div class="trust-item"><span>✅</span>Original</div>
-        </div>
-
-        <!-- ABOUT US -->
-        <div class="card">
-            <h2>Excellence in Every Field</h2>
-            <p>We are a full-service consultancy. While we are best known for our <strong>Instant Homework Q&A</strong> and <strong>Executive CVs</strong>, our team is equally skilled in handling complex <strong>Final Year Projects, Dissertations, and Data Analysis</strong>.</p>
-            <p style="margin-bottom:0;">Whatever service you choose from the list, we have a specialized expert ready to deliver distinction-level results.</p>
-        </div>
-
-        <div class="card" id="order-form">
-            <h2>Start Your Order</h2>
-            
-            <div class="form-group">
-                <label>Select Service (Add Multiple if Needed):</label>
-                <div class="service-adder-row">
-                    <select id="service-dropdown">
-                        <option value="Homework Q&A">🔓 Homework Q&A (Chegg/CourseHero)</option>
-                        <option value="Professional CV / Resume">💼 Professional CV / Resume</option>
-                        <option value="Assignments (All Courses)">📝 Assignments (All Courses)</option>
-                        <option value="Final Year Project / Report">🏗️ Final Year Project / Report</option>
-                        <option value="Research Proposal / Synopsis">🎓 Research Proposal / Synopsis</option>
-                        <option value="Thesis & Dissertation Writing">📘 Thesis & Dissertation Writing</option>
-                        <option value="Data Analysis (SPSS/Excel)">📊 Data Analysis (SPSS/Excel)</option>
-                    </select>
-                    <button class="add-svc-btn" type="button" onclick="addNewServiceItem()">➕ Add</button>
-                </div>
-                <div id="selected-services-display"></div>
-
-                <div id="platform-options">
-                    <label style="color:#b45309; margin-bottom:10px;">Link Manager (Homework Q&A):</label>
-                    <p style="font-size:12px; color:#64748b; margin-top:0;">1. Select Platform -> 2. Paste Link -> 3. Click Save</p>
-                    <div class="link-adder-row">
-                        <select id="platform-select">
-                            <option value="Chegg">Chegg</option>
-                            <option value="CourseHero">CourseHero</option>
-                            <option value="Bartleby">Bartleby</option>
-                        </select>
-                        <input type="text" id="link-input-field" placeholder="Paste link here...">
-                    </div>
-                    <button class="add-link-btn" type="button" onclick="saveLinkItem()">➕ Save Link</button>
-                    <div id="saved-links-list"></div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Urgency</label>
-                <select id="urgency">
-                    <option value="Standard (3-5 Days)">Standard (3-5 Days)</option>
-                    <option value="Priority (24-48 Hours)">🔥 Priority (24-48 Hours)</option>
-                    <option value="CRITICAL (ASAP - Today)">🚨 CRITICAL (ASAP - Today)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Topic / Module</label>
-                <input type="text" id="topic" placeholder="e.g. Power Systems...">
-            </div>
-
-            <label class="checkbox-container">
-                <input type="checkbox" id="has-files">
-                <span class="checkbox-text">📎 I have files/PDFs to send you (I will attach them in WhatsApp)</span>
-            </label>
-
-            <button class="wa-btn" type="button" onclick="finalizeInquiry()">➤ Send Inquiry via WhatsApp</button>
-        </div>
-
-        <div class="card">
-            <h2>Success Stories</h2>
-            <div class="testimonial-grid">
-                <div class="review-box"><div class="stars">★★★★★</div><p>"Saved my semester. The MATLAB code for my Control Systems project was perfect."</p><div style="font-weight:bold; font-size:12px;">— UNZA Engineering Student</div></div>
-                <div class="review-box"><div class="stars">★★★★★</div><p>"The distinction in Fluid Mechanics came from your breakdown. Highly recommended."</p><div style="font-weight:bold; font-size:12px;">— CBU Student</div></div>
-                <div class="review-box"><div class="stars">★★★★★</div><p>"Your professional CV rewrite helped me get the job abroad. Fast turnaround."</p><div style="font-weight:bold; font-size:12px;">— International Client</div></div>
-                <div class="review-box"><div class="stars">★★★★★</div><p>"My research proposal was approved on the first attempt. Thank you!"</p><div style="font-weight:bold; font-size:12px;">— Mulungushi Student</div></div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>FAQ</h2>
-            <details><summary>Is my information confidential?</summary><div class="faq-answer">Yes, 100%. We never share client data. All files are deleted from our system 30 days after project completion.</div></details>
-            <details><summary>Do you know UNZA/CBU referencing styles?</summary><div class="faq-answer">Yes, we are experts in APA, Harvard, and IEEE referencing styles required by Zambian universities.</div></details>
-            <details><summary>Can I pay in installments?</summary><div class="faq-answer">For large projects (like Dissertations), we accept a 50% deposit. Smaller assignments require full payment upfront.</div></details>
-            <details><summary>How do I receive the work?</summary><div class="faq-answer"><strong>Local:</strong> Direct to your WhatsApp inbox.<br><strong>International:</strong> Sent via WhatsApp or your preferred Email (PDF/Word).</div></details>
-        </div>
-
-        <div class="card" style="text-align: center;">
-            <h3 style="margin-bottom:5px;">💳 Payment Options</h3>
-            <p style="font-size:12px; color:#94a3b8; margin-bottom: 20px;">SECURE PAYMENTS</p>
-            <div class="payment-section">
-                <span class="payment-label">LOCAL (ZAMBIA)</span>
-                <p style="font-size:13px; margin: 0 0 10px 0;">We accept <strong>MTN Mobile Money</strong>, <strong>Airtel Money</strong>, and <strong>Zamtel Kwacha</strong>.</p>
-                <div class="payment-row">
-                    <img src="mtn.png" alt="MTN" class="pay-icon">
-                    <img src="airtel.png" alt="Airtel" class="pay-icon">
-                    <img src="zamtel.png" alt="Zamtel" class="pay-icon" style="border-radius:50%;">
-                </div>
-            </div>
-            <div class="payment-section">
-                <span class="payment-label">INTERNATIONAL</span>
-                <div class="payment-row">
-                    <img src="paypal.png" alt="PayPal" class="pay-icon">
-                    <img src="payoneer.png" alt="Payoneer" class="pay-icon">
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div style="margin-bottom:15px; font-weight:bold;"><a href="#">Home</a> | <a href="#service">Services</a> | <a href="https://wa.me/260750621616">Contact</a></div>
-            <p style="font-size: 11px; color: #94a3b8; max-width: 600px; margin: 0 auto 15px auto; line-height: 1.4;">
-                <strong>Disclaimer:</strong> PrimeGrade Solutions provides research assistance and model papers for reference purposes only. We encourage clients to use our work as a study guide and not to submit it as their own.
-            </p>
-            <div>© 2026 PrimeGrade Solutions. All Rights Reserved.</div>
-        </div>
-    </div>
-
     <script>
         var myServices = [];
         var myLinks = [];
@@ -254,9 +12,18 @@
         function addNewServiceItem() {
             var dropdown = document.getElementById("service-dropdown");
             var svcName = dropdown.value;
+            
+            // Prevent duplicates
             var isDuplicate = false;
-            for(var i=0; i < myServices.length; i++) { if(myServices[i] === svcName) isDuplicate = true; }
-            if(isDuplicate) { showToast("⚠️ Service already added!"); return; }
+            for(var i=0; i < myServices.length; i++) { 
+                if(myServices[i] === svcName) isDuplicate = true; 
+            }
+            
+            if(isDuplicate) { 
+                showToast("⚠️ Service already added!"); 
+                return; 
+            }
+            
             myServices.push(svcName);
             updateServiceDisplay();
             checkHwVisibility();
@@ -282,11 +49,76 @@
         function checkHwVisibility() {
             var box = document.getElementById("platform-options");
             var found = false;
-            for(var i=0; i < myServices.length; i++) { if(myServices[i].indexOf("Homework Q&A") !== -1) found = true; }
+            for(var i=0; i < myServices.length; i++) { 
+                if(myServices[i].indexOf("Homework Q&A") !== -1) found = true; 
+            }
             box.style.display = found ? "block" : "none";
         }
 
         function saveLinkItem() {
             var plat = document.getElementById("platform-select").value;
             var urlVal = document.getElementById("link-input-field").value;
-   
+            if(urlVal === "") { showToast("⚠️ Paste a link first!"); return; }
+            
+            var item = { p: plat, u: urlVal };
+            myLinks.push(item);
+            updateLinkDisplay();
+            document.getElementById("link-input-field").value = "";
+            showToast("🔗 Link Saved!");
+        }
+
+        function removeLinkItem(index) {
+            myLinks.splice(index, 1);
+            updateLinkDisplay();
+        }
+
+        // --- THIS WAS CUT OFF IN YOUR CODE, HERE IS THE FIX ---
+        function updateLinkDisplay() {
+            var container = document.getElementById("saved-links-list");
+            var htmlBuilder = "";
+            for(var i=0; i < myLinks.length; i++) {
+                htmlBuilder += '<div class="saved-item"><div><strong>' + myLinks[i].p + ':</strong> ' + myLinks[i].u + '</div><span class="delete-x" onclick="removeLinkItem(' + i + ')">×</span></div>';
+            }
+            container.innerHTML = htmlBuilder;
+        }
+
+        // --- THIS IS THE MISSING FUNCTION TO MAKE WHATSAPP WORK ---
+        function finalizeInquiry() {
+            // 1. Validation: Ensure they selected a service
+            if (myServices.length === 0) {
+                showToast("⚠️ Please add at least one Service!");
+                return;
+            }
+
+            // 2. Get Form Data
+            var urgency = document.getElementById("urgency").value;
+            var topic = document.getElementById("topic").value;
+            var hasFiles = document.getElementById("has-files").checked ? "YES (Will attach in chat)" : "NO";
+
+            // 3. Construct Message
+            var message = "*NEW ORDER INQUIRY*\n";
+            message += "----------------------------\n";
+            message += "*Services:* " + myServices.join(", ") + "\n";
+            message += "*Urgency:* " + urgency + "\n";
+            message += "*Topic/Module:* " + (topic ? topic : "Not Specified") + "\n";
+            message += "*Has Files:* " + hasFiles + "\n";
+
+            // Add links if Homework Q&A was selected
+            if (myLinks.length > 0) {
+                message += "\n*--- LINKS ---*\n";
+                for(var i=0; i < myLinks.length; i++) {
+                    message += myLinks[i].p + ": " + myLinks[i].u + "\n";
+                }
+            }
+
+            message += "----------------------------\n";
+            message += "Please check my details and provide a quote.";
+
+            // 4. Encode and Open WhatsApp
+            // Using the number found in your HTML: 260750621616
+            var whatsappURL = "https://wa.me/260750621616?text=" + encodeURIComponent(message);
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
