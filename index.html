@@ -28,8 +28,9 @@
         .card { background: white; border-radius: 16px; padding: 25px; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1); margin-bottom: 25px; border: 1px solid #f1f5f9; }
         h2 { color: var(--primary); border-left: 6px solid var(--gold); padding-left: 15px; margin-top: 0; }
         h3 { color: var(--secondary); margin-top: 0; font-size: 18px; }
+        p { margin-bottom: 15px; }
 
-        /* CREATIVE TIMELINE (HOW IT WORKS) */
+        /* TIMELINE (HOW IT WORKS) */
         .timeline-box { display: flex; justify-content: space-between; gap: 10px; text-align: center; margin-bottom: 25px; flex-wrap: wrap; }
         .timeline-step { flex: 1; min-width: 80px; position: relative; }
         .step-icon { width: 50px; height: 50px; background: var(--primary); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; font-size: 20px; border: 2px solid var(--gold); }
@@ -116,7 +117,9 @@
         details[open] summary::after { content: "-"; }
         .faq-answer { margin-top: 10px; font-size: 14px; color: #64748b; line-height: 1.5; }
 
-        .payment-row { display: flex; justify-content: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+        .payment-section { margin-top: 15px; }
+        .payment-label { font-size: 12px; font-weight: bold; color: #94a3b8; margin-bottom: 5px; text-align: center; display: block; }
+        .payment-row { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
         .pay-icon { height: 35px; width: auto; border-radius: 4px; border: 1px solid #e2e8f0; padding: 2px; background: white; }
         .zamtel-badge { height: 35px; padding: 0 10px; background: #009639; color: white; font-weight: bold; font-size: 11px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
         
@@ -159,12 +162,12 @@
                 <div class="timeline-step">
                     <div class="step-icon">💳</div>
                     <span class="step-title">3. Pay</span>
-                    <div class="step-desc">MoMo (Local)<br>PayPal (Intl)</div>
+                    <div class="step-desc">MTN / Airtel / PayPal</div>
                 </div>
                 <div class="timeline-step">
                     <div class="step-icon">📩</div>
                     <span class="step-title">4. Receive</span>
-                    <div class="step-desc">Files via WhatsApp or Email</div>
+                    <div class="step-desc">WhatsApp or Email</div>
                 </div>
             </div>
         </div>
@@ -183,6 +186,12 @@
                 <div class="portfolio-item"><span class="file-icon">📝</span><div class="file-name">Research Proposal<br>(Approved)</div></div>
                 <div class="portfolio-item"><span class="file-icon">💼</span><div class="file-name">CV Design<br>(Mopani Mine)</div></div>
             </div>
+        </div>
+
+        <div class="card">
+            <h2>About Us</h2>
+            <p><strong>PrimeGrade Solutions</strong> is a dedicated team of Zambian Engineers and Academic Researchers. With over 5 years of experience assisting students from <strong>UNZA, CBU, Mulungushi</strong>, and international institutions, we provide more than just answers.</p>
+            <p>We deliver detailed breakdowns, correct methodologies, and software-backed results to ensure you understand the material. Your academic success is our priority.</p>
         </div>
 
         <div class="card" id="order-form">
@@ -256,14 +265,19 @@
             <h2>FAQ</h2>
             <details>
                 <summary>Is my information confidential?</summary>
-                <div class="faq-answer">Yes, 100%. We never share client data.</div>
+                <div class="faq-answer">Yes, 100%. We never share client data. All files are deleted from our system 30 days after project completion.</div>
             </details>
             <details>
-                <summary>How do I make payment?</summary>
-                <div class="faq-answer">
-                    <strong>Local (Zambia):</strong> Airtel, MTN, Zamtel Mobile Money.<br>
-                    <strong>International:</strong> PayPal or Payoneer.
-                </div>
+                <summary>Do you know UNZA/CBU referencing styles?</summary>
+                <div class="faq-answer">Yes, we are experts in APA, Harvard, and IEEE referencing styles required by Zambian universities.</div>
+            </details>
+            <details>
+                <summary>Can I pay in installments?</summary>
+                <div class="faq-answer">For large projects (like Dissertations), we accept a 50% deposit. Smaller assignments require full payment upfront.</div>
+            </details>
+            <details>
+                <summary>Do you provide calculation files?</summary>
+                <div class="faq-answer">Yes! We provide the source files for AutoCAD, MATLAB, SPSS, and Excel calculations so you can see how it was done.</div>
             </details>
             <details>
                 <summary>How do I receive the work?</summary>
@@ -276,14 +290,25 @@
 
         <div class="card" style="text-align: center;">
             <h3 style="margin-bottom:5px;">💳 Payment Options</h3>
-            <p style="font-size:12px; color:#94a3b8;">SECURE PAYMENTS</p>
-            <div class="payment-row">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/MTN_Logo.svg/200px-MTN_Logo.svg.png" alt="MTN" class="pay-icon">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Airtel_Logo.svg/200px-Airtel_Logo.svg.png" alt="Airtel" class="pay-icon">
-                <div class="zamtel-badge">ZAMTEL</div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="pay-icon">
+            <p style="font-size:12px; color:#94a3b8; margin-bottom: 20px;">SECURE PAYMENTS</p>
+            
+            <div class="payment-section">
+                <span class="payment-label">LOCAL (ZAMBIA)</span>
+                <p style="font-size:13px; margin: 0 0 10px 0;">We accept <strong>MTN Mobile Money</strong>, <strong>Airtel Money</strong>, and <strong>Zamtel Kwacha</strong>.</p>
+                <div class="payment-row">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/MTN_Logo.svg/200px-MTN_Logo.svg.png" alt="MTN" class="pay-icon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Airtel_Logo.svg/200px-Airtel_Logo.svg.png" alt="Airtel" class="pay-icon">
+                    <div class="zamtel-badge">ZAMTEL</div>
+                </div>
             </div>
-            <p style="font-size:11px; margin-top:10px; color:#64748b;">*Mobile Money for Locals | PayPal for International</p>
+
+            <div class="payment-section">
+                <span class="payment-label">INTERNATIONAL</span>
+                <div class="payment-row">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="pay-icon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Payoneer_logo.svg" alt="Payoneer" class="pay-icon">
+                </div>
+            </div>
         </div>
 
         <div class="footer">
@@ -325,3 +350,94 @@
             checkHwVisibility();
         }
 
+        function updateServiceDisplay() {
+            var container = document.getElementById("selected-services-display");
+            var htmlBuilder = "";
+            for(var i=0; i < myServices.length; i++) {
+                var num = i + 1;
+                htmlBuilder += '<div class="selected-svc-item">' +
+                               '<div><span class="svc-number">' + num + '</span>' + myServices[i] + '</div>' +
+                               '<span class="delete-x" onclick="removeServiceItem(' + i + ')">×</span>' +
+                               '</div>';
+            }
+            container.innerHTML = htmlBuilder;
+        }
+
+        function checkHwVisibility() {
+            var box = document.getElementById("platform-options");
+            var found = false;
+            for(var i=0; i < myServices.length; i++) {
+                if(myServices[i].indexOf("Homework Q&A") !== -1) found = true;
+            }
+            box.style.display = found ? "block" : "none";
+        }
+
+        function saveLinkItem() {
+            var plat = document.getElementById("platform-select").value;
+            var urlVal = document.getElementById("link-input-field").value;
+            if(urlVal === "") { showToast("⚠️ Paste a link first!"); return; }
+            var item = { p: plat, u: urlVal };
+            myLinks.push(item);
+            updateLinkDisplay();
+            document.getElementById("link-input-field").value = "";
+            showToast("🔗 Link Saved!");
+        }
+
+        function removeLinkItem(index) {
+            myLinks.splice(index, 1);
+            updateLinkDisplay();
+        }
+
+        function updateLinkDisplay() {
+            var container = document.getElementById("saved-links-list");
+            var htmlBuilder = "";
+            for(var i=0; i < myLinks.length; i++) {
+                var num = i + 1;
+                htmlBuilder += '<div class="saved-item">' +
+                               '<div><span style="font-weight:bold; color:#0f172a; margin-right:5px;">#' + num + '</span>' + 
+                               '<span style="font-weight:bold;">[' + myLinks[i].p + ']</span> ' +
+                               '<span style="color:#64748b; font-size:12px;">' + myLinks[i].u.substring(0, 25) + '...</span></div>' +
+                               '<span class="delete-x" onclick="removeLinkItem(' + i + ')">×</span>' +
+                               '</div>';
+            }
+            container.innerHTML = htmlBuilder;
+        }
+
+        function finalizeInquiry() {
+            if(myServices.length === 0) { showToast("⚠️ Add at least one service!"); return; }
+
+            var urgency = document.getElementById("urgency").value;
+            var topic = document.getElementById("topic").value;
+            var hasFiles = document.getElementById("has-files").checked;
+            var phone = "260750621616"; 
+
+            // HERE IS THE EXACT MESSAGE START YOU REQUESTED:
+            var msg = "Hello, I would like a quote for this work.\n\n";
+            
+            msg += "📌 *Services Required:* \n";
+            for(var i=0; i < myServices.length; i++) {
+                var svc = myServices[i];
+                var n = i + 1;
+                msg += n + ". " + svc + "\n";
+                
+                if(svc.indexOf("Homework Q&A") !== -1 && myLinks.length > 0) {
+                    msg += "   _Attached Links:_ \n";
+                    for(var j=0; j < myLinks.length; j++) {
+                        msg += "   🔗 [" + myLinks[j].p + "] " + myLinks[j].u + "\n";
+                    }
+                }
+            }
+
+            msg += "\n⏳ *Urgency:* " + urgency + "\n";
+            msg += "📚 *Topic/Details:* " + (topic ? topic : "N/A") + "\n";
+            
+            if(hasFiles) {
+                msg += "\n📎 *NOTE: I have PDF/Image files to attach. I will send them now!*";
+            }
+
+            var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
