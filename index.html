@@ -55,7 +55,8 @@
         .link-adder-row input { width: 65%; }
         .add-link-btn { background: #b45309; color: white; border: none; padding: 10px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
         #saved-links-list { margin-top: 15px; display: flex; flex-direction: column; gap: 8px; }
-        .saved-item { background: white; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 13px; display: flex; justify-content: space-between; align-items: center; }
+        .saved-item { background: white; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 13px; display: flex; justify-content: space-between; align-items: center; overflow: hidden; }
+        .saved-item a { color: #0369a1; text-decoration: underline; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px; display: inline-block; vertical-align: bottom;}
 
         /* FILE CHECKBOX */
         .checkbox-container { display: flex; align-items: center; gap: 10px; background: #f1f5f9; padding: 15px; border-radius: 12px; margin-bottom: 20px; cursor: pointer; border: 2px solid transparent; }
@@ -297,10 +298,4 @@
         }
 
         function removeLinkItem(index) {
-            myLinks.splice(index, 1);
-            updateLinkDisplay();
-        }
-
-        function updateLinkDisplay() {
-            var container = document.getElementById("saved-links-list");
-            var htmlBuilder
+     
