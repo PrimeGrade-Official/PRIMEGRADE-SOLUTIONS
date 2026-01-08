@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta property="og:title" content="PrimeGrade Solutions">
+    <meta property="og:description" content="Zambia's Leading Engineering & Academic Consultancy. Get a quote now.">
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/3135/3135810.png">
+    <meta property="og:url" content="https://PrimeGrade-Official.github.io/PRIMEGRADE-SOLUTIONS/">
+    
     <title>PrimeGrade Solutions | Excellence, Integrity, Precision</title>
     <style>
         :root { --primary: #0f172a; --secondary: #334155; --gold: #fbbf24; --light: #f8fafc; }
@@ -61,7 +67,6 @@
         .link-adder-row { display: flex; gap: 10px; margin-bottom: 10px; }
         .link-adder-row select { width: 35%; } 
         .link-adder-row input { width: 65%; }
-        
         .add-link-btn { background: #b45309; color: white; border: none; padding: 10px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; }
         .add-link-btn:active { transform: scale(0.98); }
 
@@ -197,8 +202,34 @@
 
         <div class="card">
             <h2>FAQ</h2>
-            <details><summary>Is my information confidential?</summary><div class="faq-answer">Yes, 100%. We never share client data.</div></details>
-            <details><summary>How do I make payment?</summary><div class="faq-answer">We accept Mobile Money (Airtel, MTN, Zamtel) and PayPal.</div></details>
+            <details>
+                <summary>Is my information confidential?</summary>
+                <div class="faq-answer">Yes, 100%. We never share client data.</div>
+            </details>
+            <details>
+                <summary>How do I make payment?</summary>
+                <div class="faq-answer">We accept Mobile Money (Airtel, MTN, Zamtel) and PayPal.</div>
+            </details>
+            <details>
+                <summary>What if I am not satisfied?</summary>
+                <div class="faq-answer">We offer free revisions! If the work does not meet requirements, we correct it immediately.</div>
+            </details>
+            <details>
+                <summary>How do I receive the work?</summary>
+                <div class="faq-answer">Completed files are sent directly to your WhatsApp or Email.</div>
+            </details>
+            <details>
+                <summary>Do you handle full semesters?</summary>
+                <div class="faq-answer">Yes, we can manage quizzes and assignments for the entire semester.</div>
+            </details>
+        </div>
+
+        <div class="card">
+            <h2>Trusted by Students</h2>
+            <div class="testimonial-grid">
+                <div class="review-box"><div class="stars">★★★★★</div><p>"The circuit analysis breakdown was clear."</p><div style="font-weight:bold; font-size:12px;">— CBU Student</div></div>
+                <div class="review-box"><div class="stars">★★★★★</div><p>"Fastest CV service I've used."</p><div style="font-weight:bold; font-size:12px;">— UNZA Graduate</div></div>
+            </div>
         </div>
 
         <div class="card" style="text-align: center;">
@@ -220,32 +251,19 @@
     </div>
 
     <script>
-        // GLOBAL LISTS
         var myServices = [];
         var myLinks = [];
 
-        function setTopic(name) { 
-            document.getElementById("topic").value = name; 
-        }
+        function setTopic(name) { document.getElementById("topic").value = name; }
 
-        // --- SERVICE FUNCTIONS ---
         function addNewServiceItem() {
             var dropdown = document.getElementById("service-dropdown");
             var svcName = dropdown.value;
-
-            // Check duplicate
             var isDuplicate = false;
             for(var i=0; i < myServices.length; i++) {
-                if(myServices[i] === svcName) {
-                    isDuplicate = true;
-                }
+                if(myServices[i] === svcName) isDuplicate = true;
             }
-
-            if(isDuplicate) {
-                alert("You already added this service.");
-                return;
-            }
-
+            if(isDuplicate) { alert("You already added this service."); return; }
             myServices.push(svcName);
             updateServiceDisplay();
             checkHwVisibility();
@@ -260,7 +278,6 @@
         function updateServiceDisplay() {
             var container = document.getElementById("selected-services-display");
             var htmlBuilder = "";
-            
             for(var i=0; i < myServices.length; i++) {
                 var num = i + 1;
                 htmlBuilder += '<div class="selected-svc-item">' +
@@ -275,33 +292,18 @@
             var box = document.getElementById("platform-options");
             var found = false;
             for(var i=0; i < myServices.length; i++) {
-                // Check if string contains Homework Q&A
-                if(myServices[i].indexOf("Homework Q&A") !== -1) {
-                    found = true;
-                }
+                if(myServices[i].indexOf("Homework Q&A") !== -1) found = true;
             }
-            if(found) {
-                box.style.display = "block";
-            } else {
-                box.style.display = "none";
-            }
+            box.style.display = found ? "block" : "none";
         }
 
-        // --- LINK FUNCTIONS ---
         function saveLinkItem() {
             var plat = document.getElementById("platform-select").value;
             var urlVal = document.getElementById("link-input-field").value;
-
-            if(urlVal === "") {
-                alert("Please paste a link first!");
-                return;
-            }
-
+            if(urlVal === "") { alert("Please paste a link first!"); return; }
             var item = { p: plat, u: urlVal };
             myLinks.push(item);
             updateLinkDisplay();
-            
-            // Clear input
             document.getElementById("link-input-field").value = "";
         }
 
@@ -313,7 +315,6 @@
         function updateLinkDisplay() {
             var container = document.getElementById("saved-links-list");
             var htmlBuilder = "";
-
             for(var i=0; i < myLinks.length; i++) {
                 var num = i + 1;
                 htmlBuilder += '<div class="saved-item">' +
@@ -326,12 +327,8 @@
             container.innerHTML = htmlBuilder;
         }
 
-        // --- SEND TO WHATSAPP ---
         function finalizeInquiry() {
-            if(myServices.length === 0) {
-                alert("Please add at least one service.");
-                return;
-            }
+            if(myServices.length === 0) { alert("Please add at least one service."); return; }
 
             var urgency = document.getElementById("urgency").value;
             var topic = document.getElementById("topic").value;
@@ -339,32 +336,12 @@
 
             var msg = "*New Inquiry for PrimeGrade Solutions*\n\n";
             
-            // 1. Services
+            // SMART GROUPING LOGIC
             msg += "📌 *Services Required:* \n";
             for(var i=0; i < myServices.length; i++) {
+                var svc = myServices[i];
                 var n = i + 1;
-                msg += n + ". " + myServices[i] + "\n";
-            }
-
-            msg += "\n⏰ *Urgency:* " + urgency + "\n";
-            if(topic !== "") { 
-                msg += "📚 *Topic:* " + topic + "\n"; 
-            }
-
-            // 2. Links
-            if(myLinks.length > 0) {
-                msg += "\n🔗 *Saved Links:* \n";
-                for(var j=0; j < myLinks.length; j++) {
-                    var m = j + 1;
-                    msg += m + ". [" + myLinks[j].p + "] " + myLinks[j].u + "\n";
-                }
-            }
-
-            msg += "\n_Hello, I would like a quote for this work._";
-            
-            var encoded = encodeURIComponent(msg);
-            window.open("https://wa.me/" + phone + "?text=" + encoded, '_blank');
-        }
-    </script>
-</body>
-</html>
+                msg += n + ". " + svc + "\n";
+                
+                // IF THIS SERVICE IS HOMEWORK, PUT LINKS RIGHT UNDER IT
+   
