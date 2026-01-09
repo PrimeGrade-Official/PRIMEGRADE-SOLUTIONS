@@ -217,7 +217,7 @@
                 <span class="payment-label">LOCAL (ZAMBIA)</span>
                 <p style="font-size:13px; margin: 0 0 10px 0;">We accept <strong>MTN Mobile Money</strong>, <strong>Airtel Money</strong>, and <strong>Zamtel Kwacha</strong>.</p>
                 <div class="payment-row">
-                    <!-- Placeholder images (ensure you have these files or they will show alt text) -->
+                    <!-- Placeholder images -->
                     <img src="mtn.png" alt="MTN" class="pay-icon">
                     <img src="airtel.png" alt="Airtel" class="pay-icon">
                     <img src="zamtel.png" alt="Zamtel" class="pay-icon" style="border-radius:50%;">
@@ -286,7 +286,6 @@
             var htmlBuilder = "";
             for(var i=0; i < myServices.length; i++) {
                 var num = i + 1;
-                // Breaking string to be copy-paste safe
                 htmlBuilder += '<div class="selected-svc-item">';
                 htmlBuilder += '<div><span class="svc-number">' + num + '</span>' + myServices[i] + '</div>';
                 htmlBuilder += '<span class="delete-x" onclick="removeServiceItem(' + i + ')">×</span>';
@@ -332,7 +331,6 @@
                     shortUrl = shortUrl.substring(0, 35) + "...";
                 }
                 
-                // Breaking string to be copy-paste safe
                 htmlBuilder += '<div class="saved-item">';
                 htmlBuilder += '<div><b>' + myLinks[i].p + ':</b> ';
                 htmlBuilder += '<a href="' + myLinks[i].u + '" target="_blank">' + shortUrl + '</a>';
@@ -348,24 +346,27 @@
             if(myServices.length === 0) {
                 showToast("⚠️ Please add at least one service.");
                 return;
-            }
-
-            // 2. Collect Data
+            }// 2. Collect Data
             var urgency = document.getElementById("urgency").value;
             var topic = document.getElementById("topic").value;
             var hasFiles = document.getElementById("has-files").checked;
 
             // 3. Build Message
-            var msg = "*NEW ORDER REQUEST*\n------------------\n";
+            var msg = "*NEW ORDER REQUEST*\n";
+            msg += "Hello, I would like a quote for this work.\n------------------\n\n";
+            
             msg += "*Selected Services:*\n";
             for(var i=0; i<myServices.length; i++) {
-                msg += "• " + myServices[i] + "\n";
-            }
-
-            if(myLinks.length > 0) {
-                msg += "\n*Homework Links:*\n";
-                for(var j=0; j<myLinks.length; j++) {
-                    msg += "• (" + myLinks[j].p + ") " + myLinks[j].u + "\n";
+                // Add Numbered Service
+                msg += (i+1) + ". " + myServices[i] + "\n";
+                
+                // Logic: If this specific service is 'Homework Q&A', attach the links immediately below it
+                if(myServices[i].indexOf("Homework Q&A") !== -1 && myLinks.length > 0) {
+                    msg += "   _Attached Links:_\n";
+                    for(var j=0; j<myLinks.length; j++) {
+                        msg += "   🔗 [" + myLinks[j].p + "] " + myLinks[j].u + "\n";
+                    }
+                    msg += "\n"; // Extra space after links
                 }
             }
 
@@ -382,7 +383,6 @@
             var phone = "260750621616";
             var fullUrl = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
             
-            // Using location.href is often more reliable on Mobile than window.open
             window.location.href = fullUrl;
         }
     </script>
